@@ -1,4 +1,5 @@
 .navbar {
+  width: 100%;
   height: 50px;
   background-color: #003580;
   display: flex;
@@ -24,6 +25,8 @@
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-  color: #003580;
+  color: #025fe2;
   border-radius: 4px;
+  font-size: medium;
+  height: 30px;
 }
