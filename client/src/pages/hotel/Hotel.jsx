@@ -37,11 +37,55 @@ const Hotel = () => {
       src: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/446997077.jpg?k=81fa96d2c8c7cce7c1f8aa62a1372fd11b90d2ca38f051e7e0ce9c7fb9e5b2c9&o=&hp=1',
     },
   ]
+
+  const handleOpen = (i) => {
+    setSlideNumber(i)
+    setOpen(true)
+  }
+
+  const handleMove = (action) => {
+    let newSlideNumber
+
+    if (action === 'l') {
+      newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1
+    } else if (action === 'r') {
+      newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1
+    }
+
+    setSlideNumber(newSlideNumber)
+  }
+
   return (
     <div>
       <Navbar />
       <Header type='list' />
       <div className='hotelContainer'>
+        {open && (
+          <div className='slider'>
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className='close'
+              onClick={() => setOpen(false)}
+            />
+            <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              className='arrow'
+              onClick={() => handleMove('l')}
+            />
+            <div className='sliderWrapper'>
+              <img
+                src={photos[slideNumber].src}
+                alt='Image'
+                className='sliderImg'
+              />
+            </div>
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              className='arrow'
+              onClick={() => handleMove('r')}
+            />
+          </div>
+        )}
         <div className='hotelWrapper'>
           <button className='bookNow'>Reserve or Book Now!</button>
           <h1 className='hotelTitle'>
@@ -63,7 +107,12 @@ const Hotel = () => {
           <div className='hotelImages'>
             {photos.map((p, index) => (
               <div className='hotelImgWrapper' key={index}>
-                <img src={p.src} alt='Image' className='hotelImg' />
+                <img
+                  src={p.src}
+                  alt='Image'
+                  className='hotelImg'
+                  onClick={() => handleOpen(index)}
+                />
               </div>
             ))}
           </div>
