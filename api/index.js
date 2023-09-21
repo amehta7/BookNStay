@@ -5,14 +5,13 @@ import authRoute from './routes/auth.js'
 import userRoute from './routes/users.js'
 import hotelRoute from './routes/hotels.js'
 import roomRoute from './routes/rooms.js'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 
 const app = express()
 
-//middlewares
-app.use(express.json())
-
+//mongoDB connection
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI)
@@ -21,6 +20,10 @@ const connect = async () => {
     console.log(error)
   }
 }
+
+//middlewares
+app.use(express.json())
+app.use(cookieParser())
 
 app.get('/', (req, res) => {
   res.send('Welcome!!!')

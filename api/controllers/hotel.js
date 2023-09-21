@@ -1,6 +1,6 @@
 import Hotel from '../models/Hotel.js'
 
-export const getHotel = async (req, res) => {
+export const getHotel = async (req, res, next) => {
   try {
     const { id } = req.params
 
@@ -13,11 +13,11 @@ export const getHotel = async (req, res) => {
 
     res.status(200).json(hotel)
   } catch (error) {
-    res.status(500).json(error)
+    next(error)
   }
 }
 
-export const createHotel = async (req, res) => {
+export const createHotel = async (req, res, next) => {
   try {
     const newHotel = new Hotel(req.body)
     //console.log(req.body)
@@ -31,11 +31,11 @@ export const createHotel = async (req, res) => {
 
     res.status(200).json(savedHotel)
   } catch (error) {
-    res.status(500).json(error)
+    next(error)
   }
 }
 
-export const updateHotel = async (req, res) => {
+export const updateHotel = async (req, res, next) => {
   try {
     const { id } = req.params
 
@@ -52,11 +52,11 @@ export const updateHotel = async (req, res) => {
 
     res.status(200).json(hotel)
   } catch (error) {
-    res.status(500).json(error)
+    next(error)
   }
 }
 
-export const deleteHotel = async (req, res) => {
+export const deleteHotel = async (req, res, next) => {
   try {
     const { id } = req.params
 
@@ -64,22 +64,22 @@ export const deleteHotel = async (req, res) => {
 
     res.status(200).json({ msg: 'Hotel deleted successfully!' })
   } catch (error) {
-    res.status(500).json(error)
+    next(error)
   }
 }
 
-export const getAllHotels = async (req, res) => {
+export const getAllHotels = async (req, res, next) => {
   try {
     const hotels = await Hotel.find()
 
     res.status(200).json(hotels)
   } catch (error) {
-    res.status(500).json(error)
+    next(error)
   }
 }
 
-export const countByCity = async (req, res) => {}
+export const countByCity = async (req, res, next) => {}
 
-export const countByType = async (req, res) => {}
+export const countByType = async (req, res, next) => {}
 
-export const getHotelRooms = async (req, res) => {}
+export const getHotelRooms = async (req, res, next) => {}
