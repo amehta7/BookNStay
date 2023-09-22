@@ -6,6 +6,7 @@ import userRoute from './routes/users.js'
 import hotelRoute from './routes/hotels.js'
 import roomRoute from './routes/rooms.js'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 dotenv.config()
 
@@ -22,6 +23,7 @@ const connect = async () => {
 }
 
 //middlewares
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 

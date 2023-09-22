@@ -27,8 +27,13 @@ router.delete('/:id', verifyAdmin, deleteHotel)
 
 //GET ALL
 router.get('/', getAllHotels)
+
+//COUNT BY CITY
 router.get('/countByCity', countByCity)
+
+//COUNT BY TYPE
 router.get('/countByType', countByType)
+
 router.get('/room/:id', getHotelRooms)
 
 export default router
