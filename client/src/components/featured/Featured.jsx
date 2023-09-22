@@ -7,7 +7,7 @@ const Featured = () => {
     '/api/hotels/countByCity?cities=New York,London,Madrid'
   )
 
-  console.log(data)
+  //console.log(data)
   return (
     <div className='featured'>
       {loading ? (
