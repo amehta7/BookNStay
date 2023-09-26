@@ -11,11 +11,26 @@ import Navbar from '../../components/navbar/Navbar'
 import Header from '../../components/header/Header'
 import MailList from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
+import useFetch from '../../hooks/useFetch'
+import { useParams, useLocation } from 'react-router-dom'
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0)
   const [open, setOpen] = useState(false)
   const [openModal, setOpenModal] = useState(false)
+
+  // const { id } = useParams()
+
+  // console.log(id)
+
+  const location = useLocation()
+
+  console.log(location.pathname.split('/'))
+  const id = location.pathname.split('/')[2]
+
+  const { data, loading, error, reFetch } = useFetch(`api/hotels/find/${id}`)
+
+  console.log(data)
 
   const photos = [
     {
