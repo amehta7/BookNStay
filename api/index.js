@@ -23,8 +23,8 @@ const connect = async () => {
 }
 
 //middlewares
-app.use(cors())
-//app.use(cors({ origin: 'http://localhost:5173' }))
+//app.use(cors())
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
 app.use(express.json())
 app.use(cookieParser())
 
