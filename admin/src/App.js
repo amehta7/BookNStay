@@ -4,7 +4,7 @@ import List from './pages/list/List'
 import Single from './pages/single/Single'
 import New from './pages/new/New'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { productInputs, userInputs } from './formSource'
+import { hotelInputs, roomInputs, userInputs } from './formSource'
 import { hotelColumns, roomColumns, userColumns } from './datatablesource'
 import './style/dark.scss'
 import { useContext } from 'react'
@@ -69,7 +69,7 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List />
+                    <List columns={hotelColumns} />
                   </ProtectedRoute>
                 }
               />
@@ -87,7 +87,7 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List />
+                    <List columns={roomColumns} />
                   </ProtectedRoute>
                 }
               />

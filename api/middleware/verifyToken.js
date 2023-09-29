@@ -41,7 +41,9 @@ export const verifyUser = async (req, res, next) => {
 }
 
 export const verifyAdmin = async (req, res, next) => {
-  const token = req.cookies.access_token
+  const token = req.cookies['access_token']
+  // console.log(req.cookies)
+  // console.log(token)
 
   if (!token) {
     return next(createError(401, 'You are not authenticated!'))

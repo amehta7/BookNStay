@@ -23,10 +23,20 @@ const connect = async () => {
 }
 
 //middlewares
-//app.use(cors())
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
-app.use(express.json())
+const corsOptions = {
+  // set origin to a specific origin.
+  origin: 'http://localhost:3000',
+
+  // or, set origin to true to reflect the request origin
+  //origin: true,
+
+  credentials: true,
+  optionsSuccessStatus: 200,
+}
+
 app.use(cookieParser())
+app.use(cors(corsOptions))
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Welcome!!!')
