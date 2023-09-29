@@ -40,7 +40,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     let isFound = roomNumber.unavailableDates.some((date) =>
       alldates.includes(new Date(date).getTime())
     )
-
+    //console.log(isFound)
     return !isFound
   }
 

@@ -16,7 +16,14 @@ const FeaturedProperties = () => {
           {data &&
             data.map((d) => (
               <div className='fpItem' key={d._id}>
-                <img src={d.photos[0]} alt='Image' className='fpImg' />
+                <img
+                  src={
+                    d.photos[0] ||
+                    'https://cf.bstatic.com/xdata/images/hotel/square600/446996927.webp?k=9e58d05ce9df3fbe97dbd1af9d2825c907a50650b5e40b6ac84df7b26203926e&o='
+                  }
+                  alt='HotelImage'
+                  className='fpImg'
+                />
                 <span className='fpName'>{d.name}</span>
                 <span className='fpCity'>{d.city}</span>
                 <span className='fpPrice'>
