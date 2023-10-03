@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { hotelInputs } from '../../formSource'
 import useFetch from '../../hooks/useFetch'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const NewHotel = () => {
   const [files, setFiles] = useState('')
@@ -13,6 +14,8 @@ const NewHotel = () => {
   const [rooms, setRooms] = useState([])
 
   const { data, loading, error } = useFetch('/rooms')
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }))
@@ -23,7 +26,7 @@ const NewHotel = () => {
     setRooms(value)
   }
 
-  console.log(files)
+  //console.log(files)
 
   const handleClick = async (e) => {
     e.preventDefault()
@@ -34,7 +37,7 @@ const NewHotel = () => {
           data.append('file', file)
           data.append('upload_preset', 'upload')
           const uploadRes = await axios.post(
-            'https://api.cloudinary.com/v1_1/lamadev/image/upload',
+            `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
             data
           )
 
@@ -49,7 +52,11 @@ const NewHotel = () => {
         photos: list,
       }
 
-      await axios.post('/hotels', newhotel)
+      await axios.post('http://localhost:8800/api/hotels', newhotel, {
+        withCredentials: true,
+      })
+
+      navigate('/hotels')
     } catch (err) {
       console.log(err)
     }
@@ -60,7 +67,7 @@ const NewHotel = () => {
       <div className='newContainer'>
         <Navbar />
         <div className='top'>
-          <h1>Add New Product</h1>
+          <h1>Add New Hotel</h1>
         </div>
         <div className='bottom'>
           <div className='left'>

@@ -10,6 +10,8 @@ import './style/dark.scss'
 import { useContext } from 'react'
 import { DarkModeContext } from './context/darkModeContext'
 import { AuthContext } from './context/AuthContext'
+import NewHotel from './pages/newHotel/NewHotel'
+import NewRoom from './pages/newRoom/NewRoom'
 
 function App() {
   const { darkMode } = useContext(DarkModeContext)
@@ -43,7 +45,7 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List columns={userColumns} />
+                    <List columns={userColumns} name='User' />
                   </ProtectedRoute>
                 }
               />
@@ -51,7 +53,7 @@ function App() {
                 path=':userId'
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <Single name='User' />
                   </ProtectedRoute>
                 }
               />
@@ -69,15 +71,23 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List columns={hotelColumns} />
+                    <List columns={hotelColumns} name='Hotel' />
                   </ProtectedRoute>
                 }
               />
               <Route
-                path=':productId'
+                path=':hotelId'
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <Single name='Hotel' />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path='new'
+                element={
+                  <ProtectedRoute>
+                    <NewHotel />
                   </ProtectedRoute>
                 }
               />
@@ -87,15 +97,23 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List columns={roomColumns} />
+                    <List columns={roomColumns} name='Room' />
                   </ProtectedRoute>
                 }
               />
               <Route
-                path=':productId'
+                path=':roomId'
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <Single name='Room' />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path='new'
+                element={
+                  <ProtectedRoute>
+                    <NewRoom />
                   </ProtectedRoute>
                 }
               />
@@ -108,21 +126,3 @@ function App() {
 }
 
 export default App
-
-// <Route
-//   path='new'
-//   element={
-//     <ProtectedRoute>
-//       <NewHotel />
-//     </ProtectedRoute>
-//   }
-// />
-
-// <Route
-//                 path='new'
-//                 element={
-//                   <ProtectedRoute>
-//                     <NewRoom />
-//                   </ProtectedRoute>
-//                 }
-//               />
