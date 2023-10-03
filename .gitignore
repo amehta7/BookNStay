@@ -1,1 +1,5 @@
-/client/node_modules
+/frontend/node_modules
+/api/.env
+/api/node_modules
+/admin/node_modules
+/admin/.env
