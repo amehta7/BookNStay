@@ -28,9 +28,4 @@
 3. Run using npm
    $ npm start
 
-- Express
-- MongoDB
-- SASS
-- MUI
-- Recharts
-- Cloudinary
+
